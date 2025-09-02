@@ -24,9 +24,9 @@ class CompanionGUI:
         self.send_button.pack(side=tk.LEFT)
 
         # Botão de carregar PDF
-        self.load_button = tk.Button(
-            root, text="Carregar PDF", command=self.load_document)
-        self.load_button.pack(side=tk.LEFT, padx=5)
+        # self.load_button = tk.Button(
+        #     root, text="Carregar PDF", command=self.load_document)
+        # self.load_button.pack(side=tk.LEFT, padx=5)
 
     def send_message(self, event=None):
         user_text = self.entry.get()
@@ -35,21 +35,21 @@ class CompanionGUI:
         self.text_area.insert(tk.END, f"Você: {user_text}\n")
 
         # Se tiver documento carregado → responde com base nele
-        if self.companion.docs.db:
-            resposta = self.companion.ask_about_document(user_text)
-        else:
-            resposta = self.companion.ask_ollama(user_text)
+        # if self.companion.docs.db:
+        #     resposta = self.companion.ask_about_document(user_text)
+        # else:
+        resposta = self.companion.ask_ollama(user_text)
 
         self.text_area.insert(tk.END, f"IA: {resposta}\n\n")
         self.entry.delete(0, tk.END)
 
-    def load_document(self):
-        filepath = filedialog.askopenfilename(
-            filetypes=[("Arquivos PDF", "*.pdf")]
-        )
-        if filepath:
-            self.companion.docs.load_pdf(filepath)
-            messagebox.showinfo(
-                "Documento", f"📄 Documento carregado:\n{filepath}")
-            self.text_area.insert(
-                tk.END, f"[INFO] Documento carregado: {filepath}\n\n")
+    # def load_document(self):
+    #     filepath = filedialog.askopenfilename(
+    #         filetypes=[("Arquivos PDF", "*.pdf")]
+    #     )
+    #     if filepath:
+    #         self.companion.docs.load_pdf(filepath)
+    #         messagebox.showinfo(
+    #             "Documento", f"📄 Documento carregado:\n{filepath}")
+    #         self.text_area.insert(
+    #             tk.END, f"[INFO] Documento carregado: {filepath}\n\n")
